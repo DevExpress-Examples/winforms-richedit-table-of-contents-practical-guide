@@ -1,13 +1,14 @@
-Imports Microsoft.VisualBasic
-Imports System
+﻿Imports System
 Imports System.Drawing
 Imports System.Windows.Forms
 Imports DevExpress.XtraRichEdit.Commands
 Imports DevExpress.XtraRichEdit.API.Native
+Imports DevExpress.Portable.Input
 
 Namespace RichEditTOCGeneration
 	Partial Public Class Form1
 		Inherits Form
+
 		Public ReadOnly Property Document() As Document
 			Get
 				Return richEditControl1.Document
@@ -17,19 +18,25 @@ Namespace RichEditTOCGeneration
 
 		Public Sub New()
 			InitializeComponent()
-			richEditControl1.Options.Hyperlinks.ModifierKeys = Keys.None
+			richEditControl1.Options.Hyperlinks.ModifierKeys = PortableKeys.None
 			btnLoadTemplate_Click(btnLoadTemplate, EventArgs.Empty)
 		End Sub
 
 		Private Sub btnLoadTemplate_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnLoadTemplate.Click
+			If Not Me.btnLoadTemplate.IsHandleCreated Then Return
+
 			richEditControl1.LoadDocument("Employees.rtf")
 		End Sub
 
 		Private Sub btnShowAllFieldCodes_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnShowAllFieldCodes.Click
-			CType(New ShowAllFieldCodesCommand(richEditControl1), ShowAllFieldCodesCommand).Execute()
+			If Not Me.btnShowAllFieldCodes.IsHandleCreated Then Return
+
+			Call (New ShowAllFieldCodesCommand(richEditControl1)).Execute()
 		End Sub
 
 		Private Sub btnStyles_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnStyles.Click
+			If Not Me.btnStyles.IsHandleCreated Then Return
+
 			Document.BeginUpdate()
 			ApplyStyles()
 			InsertTOC("\h", True)
@@ -37,6 +44,8 @@ Namespace RichEditTOCGeneration
 		End Sub
 
 		Private Sub btnOutlineLevels_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnOutlineLevels.Click
+			If Not Me.btnOutlineLevels.IsHandleCreated Then Return
+
 			Document.BeginUpdate()
 			AssignOutlineLevels()
 			InsertTOC("\h \u", True)
@@ -44,6 +53,8 @@ Namespace RichEditTOCGeneration
 		End Sub
 
 		Private Sub btnTCFields_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnTCFields.Click
+			If Not Me.btnTCFields.IsHandleCreated Then Return
+
 			Document.BeginUpdate()
 			AddTCFields()
 			InsertTOC("\h \f defaultGroup", True)
@@ -52,31 +63,25 @@ Namespace RichEditTOCGeneration
 		End Sub
 
 		Private Sub ApplyStyles()
-			SearchForTOCEntries(Function(location, level) AnonymousMethod1(location, level))
+'INSTANT VB NOTE: The variable location was renamed since Visual Basic does not handle local variables named the same as class members well:
+			SearchForTOCEntries(Sub(location_Conflict As DocumentPosition, level As Integer)
+				Document.Paragraphs.Get(location_Conflict).Style = GetStyleForLevel(level)
+			End Sub)
 		End Sub
-		
-		Private Function AnonymousMethod1(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.Paragraphs.Get(location).Style = GetStyleForLevel(level)
-			Return True
-		End Function
 
 		Private Sub AssignOutlineLevels()
-			SearchForTOCEntries(Function(location, level) AnonymousMethod2(location, level))
+'INSTANT VB NOTE: The variable location was renamed since Visual Basic does not handle local variables named the same as class members well:
+			SearchForTOCEntries(Sub(location_Conflict As DocumentPosition, level As Integer)
+				Document.Paragraphs.Get(location_Conflict).OutlineLevel = level
+			End Sub)
 		End Sub
-		
-		Private Function AnonymousMethod2(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.Paragraphs.Get(location).OutlineLevel = level
-			Return True
-		End Function
 
 		Private Sub AddTCFields()
-			SearchForTOCEntries(Function(location, level) AnonymousMethod3(location, level))
+'INSTANT VB NOTE: The variable location was renamed since Visual Basic does not handle local variables named the same as class members well:
+			SearchForTOCEntries(Sub(location_Conflict As DocumentPosition, level As Integer)
+				Document.Fields.Create(location_Conflict, String.Format("TC ""{0}"" \f {1} \l {2}", Document.GetText(Document.Paragraphs.Get(location_Conflict).Range), "defaultGroup", level))
+			End Sub)
 		End Sub
-		
-		Private Function AnonymousMethod3(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.Fields.Create(location, String.Format("TC ""{0}"" \f {1} \l {2}", Document.GetText(Document.Paragraphs.Get(location).Range), "defaultGroup", level))
-			Return True
-		End Function
 
 		Private Sub SearchForTOCEntries(ByVal callback As TOCEntryFound)
 			For i As Integer = 0 To Document.Paragraphs.Count - 1
@@ -84,13 +89,13 @@ Namespace RichEditTOCGeneration
 				Dim cp As CharacterProperties = Document.BeginUpdateCharacters(range)
 				Dim level As Integer = 0
 
-				If cp.FontSize.Equals(14f) Then
+				If cp.FontSize.Equals(14F) Then
 					level = 1
 				End If
-				If cp.FontSize.Equals(13f) Then
+				If cp.FontSize.Equals(13F) Then
 					level = 2
 				End If
-				If cp.FontSize.Equals(11f) Then
+				If cp.FontSize.Equals(11F) Then
 					level = 3
 				End If
 
@@ -118,7 +123,7 @@ Namespace RichEditTOCGeneration
 		End Sub
 
 		Private Sub InsertContentHeading()
-			Dim range As DocumentRange = Document.InsertText(Document.Range.Start, "Contents" & Constants.vbCrLf)
+			Dim range As DocumentRange = Document.InsertText(Document.Range.Start, "Contents" & vbCrLf)
 			Dim cp As CharacterProperties = Document.BeginUpdateCharacters(range)
 			cp.FontSize = 18
 			cp.ForeColor = Color.DarkBlue

@@ -1,6 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
-Namespace RichEditTOCGeneration
+﻿Namespace RichEditTOCGeneration
 	Partial Public Class Form1
 		''' <summary>
 		''' Required designer variable.
@@ -60,7 +58,8 @@ Namespace RichEditTOCGeneration
 			Me.btnStyles.TabIndex = 2
 			Me.btnStyles.Text = "Styles"
 			Me.btnStyles.UseVisualStyleBackColor = True
-'			Me.btnStyles.Click += New System.EventHandler(Me.btnStyles_Click);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.btnStyles.Click += new System.EventHandler(this.btnStyles_Click);
 			' 
 			' btnOutlineLevels
 			' 
@@ -70,7 +69,8 @@ Namespace RichEditTOCGeneration
 			Me.btnOutlineLevels.TabIndex = 3
 			Me.btnOutlineLevels.Text = "Outline Levels"
 			Me.btnOutlineLevels.UseVisualStyleBackColor = True
-'			Me.btnOutlineLevels.Click += New System.EventHandler(Me.btnOutlineLevels_Click);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.btnOutlineLevels.Click += new System.EventHandler(this.btnOutlineLevels_Click);
 			' 
 			' btnTCFields
 			' 
@@ -80,7 +80,8 @@ Namespace RichEditTOCGeneration
 			Me.btnTCFields.TabIndex = 4
 			Me.btnTCFields.Text = "TC Fields"
 			Me.btnTCFields.UseVisualStyleBackColor = True
-'			Me.btnTCFields.Click += New System.EventHandler(Me.btnTCFields_Click);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.btnTCFields.Click += new System.EventHandler(this.btnTCFields_Click);
 			' 
 			' btnLoadTemplate
 			' 
@@ -90,7 +91,8 @@ Namespace RichEditTOCGeneration
 			Me.btnLoadTemplate.TabIndex = 5
 			Me.btnLoadTemplate.Text = "Load Template"
 			Me.btnLoadTemplate.UseVisualStyleBackColor = True
-'			Me.btnLoadTemplate.Click += New System.EventHandler(Me.btnLoadTemplate_Click);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.btnLoadTemplate.Click += new System.EventHandler(this.btnLoadTemplate_Click);
 			' 
 			' btnShowAllFieldCodes
 			' 
@@ -100,7 +102,8 @@ Namespace RichEditTOCGeneration
 			Me.btnShowAllFieldCodes.TabIndex = 6
 			Me.btnShowAllFieldCodes.Text = "Show All Field Codes"
 			Me.btnShowAllFieldCodes.UseVisualStyleBackColor = True
-'			Me.btnShowAllFieldCodes.Click += New System.EventHandler(Me.btnShowAllFieldCodes_Click);
+'INSTANT VB NOTE: The following InitializeComponent event wireup was converted to a 'Handles' clause:
+'ORIGINAL LINE: this.btnShowAllFieldCodes.Click += new System.EventHandler(this.btnShowAllFieldCodes_Click);
 			' 
 			' Form1
 			' 
