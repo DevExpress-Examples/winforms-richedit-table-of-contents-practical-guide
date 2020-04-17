@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DevExpress.XtraRichEdit.Commands;
 using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.Portable.Input;
 
 namespace RichEditTOCGeneration {
     public partial class Form1 : Form {
@@ -11,7 +12,7 @@ namespace RichEditTOCGeneration {
 
         public Form1() {
             InitializeComponent();
-            richEditControl1.Options.Hyperlinks.ModifierKeys = Keys.None;
+            richEditControl1.Options.Hyperlinks.ModifierKeys = PortableKeys.None;
             btnLoadTemplate_Click(btnLoadTemplate, EventArgs.Empty);
         }
 
@@ -47,20 +48,20 @@ namespace RichEditTOCGeneration {
 
         private void ApplyStyles() {
             SearchForTOCEntries(delegate(DocumentPosition location, int level) {
-                Document.GetParagraph(location).Style = GetStyleForLevel(level);
+                Document.Paragraphs.Get(location).Style = GetStyleForLevel(level);
             });
         }
 
         private void AssignOutlineLevels() {
             SearchForTOCEntries(delegate(DocumentPosition location, int level) {
-                Document.GetParagraph(location).OutlineLevel = level;
+                Document.Paragraphs.Get(location).OutlineLevel = level;
             });
         }
 
         private void AddTCFields() {
             SearchForTOCEntries(delegate(DocumentPosition location, int level) {
-                Document.Fields.Add(location, string.Format("TC \"{0}\" \\f {1} \\l {2}", 
-                    Document.GetText(Document.GetParagraph(location).Range), "defaultGroup", level));
+                Document.Fields.Create(location, string.Format("TC \"{0}\" \\f {1} \\l {2}", 
+                    Document.GetText(Document.Paragraphs.Get(location).Range), "defaultGroup", level));
             });
         }
 
@@ -88,7 +89,7 @@ namespace RichEditTOCGeneration {
             if (insertHeading)
                 InsertContentHeading();
 
-            Field field = Document.Fields.Add(Document.Paragraphs[(insertHeading ? 1 : 0)].Range.Start, "TOC " + switches);
+            Field field = Document.Fields.Create(Document.Paragraphs[(insertHeading ? 1 : 0)].Range.Start, "TOC " + switches);
             CharacterProperties cp = Document.BeginUpdateCharacters(field.Range);
             cp.Bold = false;
             cp.FontSize = 12;

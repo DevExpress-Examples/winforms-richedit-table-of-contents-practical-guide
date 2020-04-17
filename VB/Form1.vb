@@ -56,7 +56,7 @@ Namespace RichEditTOCGeneration
 		End Sub
 		
 		Private Function AnonymousMethod1(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.GetParagraph(location).Style = GetStyleForLevel(level)
+			Document.Paragraphs.Get(location).Style = GetStyleForLevel(level)
 			Return True
 		End Function
 
@@ -65,7 +65,7 @@ Namespace RichEditTOCGeneration
 		End Sub
 		
 		Private Function AnonymousMethod2(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.GetParagraph(location).OutlineLevel = level
+			Document.Paragraphs.Get(location).OutlineLevel = level
 			Return True
 		End Function
 
@@ -74,7 +74,7 @@ Namespace RichEditTOCGeneration
 		End Sub
 		
 		Private Function AnonymousMethod3(ByVal location As DocumentPosition, ByVal level As Integer) As Boolean
-			Document.Fields.Add(location, String.Format("TC ""{0}"" \f {1} \l {2}", Document.GetText(Document.GetParagraph(location).Range), "defaultGroup", level))
+			Document.Fields.Create(location, String.Format("TC ""{0}"" \f {1} \l {2}", Document.GetText(Document.Paragraphs.Get(location).Range), "defaultGroup", level))
 			Return True
 		End Function
 
@@ -107,7 +107,7 @@ Namespace RichEditTOCGeneration
 				InsertContentHeading()
 			End If
 
-			Dim field As Field = Document.Fields.Add(Document.Paragraphs((If(insertHeading, 1, 0))).Range.Start, "TOC " & switches)
+			Dim field As Field = Document.Fields.Create(Document.Paragraphs((If(insertHeading, 1, 0))).Range.Start, "TOC " & switches)
 			Dim cp As CharacterProperties = Document.BeginUpdateCharacters(field.Range)
 			cp.Bold = False
 			cp.FontSize = 12
