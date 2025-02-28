@@ -1,34 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net8.0-windows</TargetFramework>
-        <OutputType>WinExe</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace></RootNamespace>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <UseWindowsForms>true</UseWindowsForms>
-        <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Update="Form1.Designer.vb">
-            <DependentUpon>Form1.vb</DependentUpon>
-        </Compile>
-        <Compile Update="Properties\Resources.Designer.vb">
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
-            <DesignTime>True</DesignTime>
-        </Compile>
-        <None Update="Employees.rtf">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <Compile Update="Properties\Settings.Designer.vb">
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Settings.settings</DependentUpon>
-            <DesignTimeSharedInput>True</DesignTimeSharedInput>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="DevExpress.RichEdit.Export" Version="24.2.*" />
-        <PackageReference Include="DevExpress.Document.Processor" Version="24.2.*" />
-        <PackageReference Include="DevExpress.Win.RichEdit" Version="24.2.*" />
-    </ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <PublishUrl>publish\</PublishUrl>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="Employees.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.RichEdit.Export" Version="24.2.*" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="24.2.*" />
+    <PackageReference Include="DevExpress.Win.RichEdit" Version="24.2.*" />
+  </ItemGroup>
 </Project>

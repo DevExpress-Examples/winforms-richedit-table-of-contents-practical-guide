@@ -1,6 +1,4 @@
-Imports System
 Imports System.Drawing
-Imports System.Windows.Forms
 Imports DevExpress.XtraRichEdit.Commands
 Imports DevExpress.XtraRichEdit.API.Native
 Imports DevExpress.Portable.Input
@@ -35,27 +33,27 @@ Namespace RichEditTOCGeneration
         Private Sub btnStyles_Click(ByVal sender As Object, ByVal e As EventArgs)
             Document.BeginUpdate()
             ApplyStyles()
-            InsertTOC("\h", True)
+            Me.InsertTOC("\h", True)
             Document.EndUpdate()
         End Sub
 
         Private Sub btnOutlineLevels_Click(ByVal sender As Object, ByVal e As EventArgs)
             Document.BeginUpdate()
             AssignOutlineLevels()
-            InsertTOC("\h \u", True)
+            Me.InsertTOC("\h \u", True)
             Document.EndUpdate()
         End Sub
 
         Private Sub btnTCFields_Click(ByVal sender As Object, ByVal e As EventArgs)
             Document.BeginUpdate()
             AddTCFields()
-            InsertTOC("\h \f defaultGroup", True)
+            Me.InsertTOC("\h \f defaultGroup", True)
             Document.Fields.Update()
             Document.EndUpdate()
         End Sub
 
         Private Sub ApplyStyles()
-            SearchForTOCEntries(Sub(ByVal location, ByVal level) Document.Paragraphs.Get(location).Style = GetStyleForLevel(level))
+            SearchForTOCEntries(Sub(ByVal location, ByVal level) Document.Paragraphs.Get(location).Style = Me.GetStyleForLevel(level))
         End Sub
 
         Private Sub AssignOutlineLevels()
@@ -75,7 +73,7 @@ Namespace RichEditTOCGeneration
                 If cp.FontSize.Equals(13F) Then level = 2
                 If cp.FontSize.Equals(11F) Then level = 3
                 Document.EndUpdateCharacters(cp)
-                If level <> 0 Then callback(range.Start, level)
+                If level IsNot 0 Then callback(range.Start, level)
             Next
         End Sub
 

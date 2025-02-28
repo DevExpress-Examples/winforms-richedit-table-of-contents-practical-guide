@@ -60,7 +60,7 @@ Namespace RichEditTOCGeneration
             Me.btnStyles.TabIndex = 2
             Me.btnStyles.Text = "Styles"
             Me.btnStyles.UseVisualStyleBackColor = True
-            AddHandler Me.btnStyles.Click, New System.EventHandler(AddressOf Me.btnStyles_Click)
+            Me.btnStyles.Click += New System.EventHandler(AddressOf Me.btnStyles_Click)
             ' 
             ' btnOutlineLevels
             ' 
@@ -70,7 +70,7 @@ Namespace RichEditTOCGeneration
             Me.btnOutlineLevels.TabIndex = 3
             Me.btnOutlineLevels.Text = "Outline Levels"
             Me.btnOutlineLevels.UseVisualStyleBackColor = True
-            AddHandler Me.btnOutlineLevels.Click, New System.EventHandler(AddressOf Me.btnOutlineLevels_Click)
+            Me.btnOutlineLevels.Click += New System.EventHandler(AddressOf Me.btnOutlineLevels_Click)
             ' 
             ' btnTCFields
             ' 
@@ -80,7 +80,7 @@ Namespace RichEditTOCGeneration
             Me.btnTCFields.TabIndex = 4
             Me.btnTCFields.Text = "TC Fields"
             Me.btnTCFields.UseVisualStyleBackColor = True
-            AddHandler Me.btnTCFields.Click, New System.EventHandler(AddressOf Me.btnTCFields_Click)
+            Me.btnTCFields.Click += New System.EventHandler(AddressOf Me.btnTCFields_Click)
             ' 
             ' btnLoadTemplate
             ' 
@@ -90,7 +90,7 @@ Namespace RichEditTOCGeneration
             Me.btnLoadTemplate.TabIndex = 5
             Me.btnLoadTemplate.Text = "Load Template"
             Me.btnLoadTemplate.UseVisualStyleBackColor = True
-            AddHandler Me.btnLoadTemplate.Click, New System.EventHandler(AddressOf Me.btnLoadTemplate_Click)
+            Me.btnLoadTemplate.Click += New System.EventHandler(AddressOf Me.btnLoadTemplate_Click)
             ' 
             ' btnShowAllFieldCodes
             ' 
@@ -100,7 +100,7 @@ Namespace RichEditTOCGeneration
             Me.btnShowAllFieldCodes.TabIndex = 6
             Me.btnShowAllFieldCodes.Text = "Show All Field Codes"
             Me.btnShowAllFieldCodes.UseVisualStyleBackColor = True
-            AddHandler Me.btnShowAllFieldCodes.Click, New System.EventHandler(AddressOf Me.btnShowAllFieldCodes_Click)
+            Me.btnShowAllFieldCodes.Click += New System.EventHandler(AddressOf Me.btnShowAllFieldCodes_Click)
             ' 
             ' Form1
             ' 
