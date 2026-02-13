@@ -25,7 +25,7 @@ The example demonstrates the following approaches to mark TOC entries:
 
 * [Table of Contents in Rich Text Editor](https://docs.devexpress.com/WindowsForms/9561/controls-and-libraries/rich-text-editor/page-layout/table-of-contents)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-richedit-table-of-contents-practical-guide&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-richedit-table-of-contents-practical-guide&~~~was_helpful=no)
 
