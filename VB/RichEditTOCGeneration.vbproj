@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0-windows</TargetFramework>
+        <TargetFramework>net10.0-windows</TargetFramework>
         <OutputType>WinExe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
         <RootNamespace></RootNamespace>
@@ -28,8 +28,8 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="DevExpress.RichEdit.Export" Version="24.2.*" />
-        <PackageReference Include="DevExpress.Document.Processor" Version="24.2.*" />
-        <PackageReference Include="DevExpress.Win.RichEdit" Version="24.2.*" />
+        <PackageReference Include="DevExpress.RichEdit.Export" Version="26.1.*" />
+        <PackageReference Include="DevExpress.Document.Processor" Version="26.1.*" />
+        <PackageReference Include="DevExpress.Win.RichEdit" Version="26.1.*" />
     </ItemGroup>
 </Project>
